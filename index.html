@@ -53,15 +53,13 @@
       gap: 1.5vw;
     }
 
-    /* ── WoW button using the provided CSS variable system ── */
+    /* ── WoW button CSS variable system ─────────────────── */
     .button {
-      /* variable definitions — WoW login button values */
       --button-color-background-default: linear-gradient(180deg, #501010 0%, #280404 50%, #3c0808 100%);
-      --button-color-text-default:       #ffffff;
+      --button-color-text-default:       #f5c518;
       --button-border-color-default:     #7a2020;
       --button-border-width-default:     2px;
       --button-padding:                  3vw;
-      --button-height:                   auto;
       --button-font:                     700 4.5vw 'FRISQUAD', serif;
       --button-shadow:
         0 0 6px rgba(180, 40, 40, 0.8),
@@ -69,39 +67,36 @@
         inset 0 1px 0 rgba(255, 120, 120, 0.2),
         inset 0 -1px 0 rgba(0, 0, 0, 0.6);
 
-      /* resolved variables */
-      --button-border-color:      var(--button-border-color-default);
-      --button-border-width:      var(--button-border-width-default);
-      --button-color-background:  var(--button-color-background-default);
-      --button-color-text:        var(--button-color-text-default);
+      --button-border-color:     var(--button-border-color-default);
+      --button-border-width:     var(--button-border-width-default);
+      --button-color-background: var(--button-color-background-default);
+      --button-color-text:       var(--button-color-text-default);
 
-      /* applied properties */
-      background:       var(--button-color-background);
-      border:           var(--button-border-width) solid var(--button-border-color);
-      border-radius:    10px;
-      box-shadow:       var(--button-shadow);
-      box-sizing:       border-box;
-      color:            var(--button-color-text);
-      cursor:           default;
-      font:             var(--button-font);
-      outline-offset:   0;
-      overflow:         hidden;
-      padding:          1vw calc(var(--button-padding) - var(--button-border-width));
-      text-align:       center;
-      text-decoration:  none;
-      text-overflow:    ellipsis;
-      white-space:      nowrap;
-      min-width:        28vw;
-
-      /* text */
+      background:      var(--button-color-background);
+      border:          var(--button-border-width) solid var(--button-border-color);
+      border-radius:   10px;
+      box-shadow:      var(--button-shadow);
+      box-sizing:      border-box;
+      color:           var(--button-color-text);
+      cursor:          default;
+      font:            var(--button-font);
+      outline-offset:  0;
+      overflow:        hidden;
+      padding:         1vw calc(var(--button-padding) - var(--button-border-width));
+      text-align:      center;
+      text-decoration: none;
+      text-overflow:   ellipsis;
+      white-space:     nowrap;
+      min-width:       28vw;
       -webkit-text-stroke: 1px #000;
     }
 
     .button.btn-temp {
       --button-font: 700 18.75vw 'FRISQUAD', serif;
+      /* reduced vertical padding by 5px */
+      padding:        calc(1vw - 5px) calc(var(--button-padding) - var(--button-border-width));
+      line-height:    1;
       -webkit-text-stroke: 2px #000;
-      line-height: 1;
-      padding: 0.5vw calc(var(--button-padding) - var(--button-border-width));
     }
 
     .unit {
