@@ -50,48 +50,41 @@
       );
     }
 
-    /* ── Pulsing arcane glow ─────────────────────────────── */
-    @keyframes arcane-pulse {
-      0%, 100% {
-        filter:
-          drop-shadow(0 0 6px  rgba(201, 168, 76,  0.9))
-          drop-shadow(0 0 18px rgba(160, 100, 255, 0.5))
-          drop-shadow(0 0 35px rgba(130, 60,  255, 0.25));
-      }
-      50% {
-        filter:
-          drop-shadow(0 0 10px rgba(201, 168, 76,  0.6))
-          drop-shadow(0 0 35px rgba(160, 100, 255, 0.95))
-          drop-shadow(0 0 65px rgba(130, 60,  255, 0.55));
-      }
-    }
-
-    /* ── Gradient text shared styles ─────────────────────── */
-    .data h1,
-    .data p {
-      background: linear-gradient(
-        160deg,
-        #c9a84c  0%,
-        #edd97a  28%,
-        #c4a8ff  62%,
-        #9b6bff  100%
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: arcane-pulse 3s ease-in-out infinite;
+    /* ── Flame flicker — irregular multi-step animation ──── */
+    @keyframes flicker {
+      0%   { opacity: 1;    text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 30px #ffb347, 0 0 55px #ff6a00, 0 0 80px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      4%   { opacity: 0.92; text-shadow: 0 0 6px #fff, 0 0 14px #fff, 0 0 22px #ffb347, 0 0 40px #ff6a00, 0 0 60px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      8%   { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 22px #fff, 0 0 38px #ffb347, 0 0 65px #ff6a00, 0 0 95px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      15%  { opacity: 0.88; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 18px #ffb347, 0 0 32px #ff6a00, 0 0 50px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      20%  { opacity: 1;    text-shadow: 0 0 9px #fff, 0 0 20px #fff, 0 0 34px #ffb347, 0 0 58px #ff6a00, 0 0 85px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      28%  { opacity: 0.95; text-shadow: 0 0 7px #fff, 0 0 16px #fff, 0 0 26px #ffb347, 0 0 45px #ff6a00, 0 0 70px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      35%  { opacity: 0.80; text-shadow: 0 0 4px #fff, 0 0  8px #fff, 0 0 14px #ffb347, 0 0 26px #ff6a00, 0 0 40px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      38%  { opacity: 1;    text-shadow: 0 0 11px #fff, 0 0 24px #fff, 0 0 42px #ffb347, 0 0 70px #ff6a00, 0 0 100px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      50%  { opacity: 0.97; text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 30px #ffb347, 0 0 55px #ff6a00, 0 0 80px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      60%  { opacity: 0.85; text-shadow: 0 0 5px #fff, 0 0 11px #fff, 0 0 20px #ffb347, 0 0 36px #ff6a00, 0 0 55px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      65%  { opacity: 1;    text-shadow: 0 0 9px #fff, 0 0 20px #fff, 0 0 35px #ffb347, 0 0 60px #ff6a00, 0 0 88px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      75%  { opacity: 0.78; text-shadow: 0 0 3px #fff, 0 0  7px #fff, 0 0 12px #ffb347, 0 0 22px #ff6a00, 0 0 35px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      78%  { opacity: 1;    text-shadow: 0 0 10px #fff, 0 0 22px #fff, 0 0 40px #ffb347, 0 0 68px #ff6a00, 0 0 98px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      90%  { opacity: 0.93; text-shadow: 0 0 7px #fff, 0 0 15px #fff, 0 0 28px #ffb347, 0 0 50px #ff6a00, 0 0 75px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
+      100% { opacity: 1;    text-shadow: 0 0 8px #fff, 0 0 18px #fff, 0 0 30px #ffb347, 0 0 55px #ff6a00, 0 0 80px #ff4500, 0 4px 10px rgba(0,0,0,0.9); }
     }
 
     .data h1 {
       font-size: 5vw;
       text-transform: uppercase;
       letter-spacing: 0.2em;
+      color: #ffffff;
+      animation: flicker 5s step-start infinite;
     }
 
     .data p {
       margin: 0;
       font-size: 18.75vw;
       line-height: 1;
+      color: #ffffff;
+      animation: flicker 5s step-start infinite;
+      /* slight delay so label and number don't flicker in sync */
+      animation-delay: 0.15s;
     }
 
     .unit {
