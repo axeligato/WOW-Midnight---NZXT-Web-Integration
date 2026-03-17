@@ -50,43 +50,61 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 1.5vw;
     }
 
-    /* ── Red WoW-style button box ─────────────────────────── */
-    .text-box {
+    /* ── WoW login button style ───────────────────────────── */
+    .wow-btn {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 1.5vw 5vw 2vw;
-      background: linear-gradient(180deg, #8b0000 0%, #5a0000 100%);
-      border: 2px solid #4a4a4a;
-      border-radius: 10px;
+      padding: 0.6vw 4vw;
+      /* dark semi-transparent fill with red tint */
+      background: linear-gradient(180deg,
+        rgba(80, 10, 10, 0.82) 0%,
+        rgba(40, 4, 4, 0.90)  50%,
+        rgba(60, 8, 8, 0.82) 100%
+      );
+      /* red-toned border like the WoW buttons */
+      border: 1px solid #7a2020;
+      border-bottom-color: #3a0a0a;
+      border-top-color: #c04040;
+      border-radius: 3px;
+      /* outer glow + depth shadow */
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.15),
-        0 4px 16px rgba(0,0,0,0.85);
+        0 0 6px rgba(180, 40, 40, 0.5),
+        0 2px 8px rgba(0, 0, 0, 0.85),
+        inset 0 1px 0 rgba(255, 120, 120, 0.18),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+      min-width: 28vw;
     }
 
-    .data h1 {
-      font-size: 5vw;
+    /* GPU label button — slightly smaller */
+    .btn-label {
+      font-size: 4.5vw;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       color: #ffffff;
-      -webkit-text-stroke: 1px #000000;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+      -webkit-text-stroke: 1px #000;
+      text-shadow:
+        0 0 8px rgba(255, 160, 160, 0.6),
+        0 1px 3px rgba(0,0,0,0.95);
     }
 
-    .data p {
-      margin: 0;
+    /* Temperature button — big */
+    .btn-temp {
       font-size: 18.75vw;
       line-height: 1;
       color: #ffffff;
-      -webkit-text-stroke: 2px #000000;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      -webkit-text-stroke: 2px #000;
+      text-shadow:
+        0 0 10px rgba(255, 160, 160, 0.5),
+        0 2px 4px rgba(0,0,0,0.95);
     }
 
     .unit {
       font-size: 9vw;
+      -webkit-text-stroke: 1px #000;
     }
   </style>
 </head>
@@ -95,10 +113,17 @@
   <div class="container">
     <img id="background" src="./public/background.png" alt="WoW Midnight" />
     <div class="data">
-      <div class="text-box">
-        <h1 id="source">GPU</h1>
-        <p><span id="temperature">--</span><span class="unit">°C</span></p>
+
+      <!-- GPU label button -->
+      <div class="wow-btn">
+        <span class="btn-label" id="source">GPU</span>
       </div>
+
+      <!-- Temperature button -->
+      <div class="wow-btn">
+        <span class="btn-temp"><span id="temperature">--</span><span class="unit">°C</span></span>
+      </div>
+
     </div>
   </div>
 
