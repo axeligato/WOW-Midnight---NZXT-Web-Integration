@@ -123,7 +123,6 @@
       const params = (new URL(window.location.href)).searchParams
       source = params.get('source') || 'gpu'
     } catch(e) {}
-    document.getElementById('source').innerText = source.toUpperCase()
 
     function updateTemperature(temperature) {
       document.getElementById('temperature').innerText = Math.round(temperature)
