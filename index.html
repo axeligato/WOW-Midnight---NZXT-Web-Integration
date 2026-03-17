@@ -53,53 +53,55 @@
       gap: 1.5vw;
     }
 
-    /* ── WoW login button style ───────────────────────────── */
-    .wow-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.6vw 4vw;
-      /* dark semi-transparent fill with red tint */
-      background: linear-gradient(180deg,
-        rgba(80, 10, 10, 0.82) 0%,
-        rgba(40, 4, 4, 0.90)  50%,
-        rgba(60, 8, 8, 0.82) 100%
-      );
-      /* red-toned border like the WoW buttons */
-      border: 1px solid #7a2020;
-      border-bottom-color: #3a0a0a;
-      border-top-color: #c04040;
-      border-radius: 3px;
-      /* outer glow + depth shadow */
-      box-shadow:
-        0 0 6px rgba(180, 40, 40, 0.5),
-        0 2px 8px rgba(0, 0, 0, 0.85),
-        inset 0 1px 0 rgba(255, 120, 120, 0.18),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-      min-width: 28vw;
-    }
+    /* ── WoW button using the provided CSS variable system ── */
+    .button {
+      /* variable definitions — WoW login button values */
+      --button-color-background-default: linear-gradient(180deg, #501010 0%, #280404 50%, #3c0808 100%);
+      --button-color-text-default:       #ffffff;
+      --button-border-color-default:     #7a2020;
+      --button-border-width-default:     2px;
+      --button-padding:                  3vw;
+      --button-height:                   auto;
+      --button-font:                     700 4.5vw 'FRISQUAD', serif;
+      --button-shadow:
+        0 0 6px rgba(180, 40, 40, 0.8),
+        0 2px 8px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 120, 120, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.6);
 
-    /* GPU label button — slightly smaller */
-    .btn-label {
-      font-size: 4.5vw;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #ffffff;
+      /* resolved variables */
+      --button-border-color:      var(--button-border-color-default);
+      --button-border-width:      var(--button-border-width-default);
+      --button-color-background:  var(--button-color-background-default);
+      --button-color-text:        var(--button-color-text-default);
+
+      /* applied properties */
+      background:       var(--button-color-background);
+      border:           var(--button-border-width) solid var(--button-border-color);
+      border-radius:    10px;
+      box-shadow:       var(--button-shadow);
+      box-sizing:       border-box;
+      color:            var(--button-color-text);
+      cursor:           default;
+      font:             var(--button-font);
+      outline-offset:   0;
+      overflow:         hidden;
+      padding:          1vw calc(var(--button-padding) - var(--button-border-width));
+      text-align:       center;
+      text-decoration:  none;
+      text-overflow:    ellipsis;
+      white-space:      nowrap;
+      min-width:        28vw;
+
+      /* text */
       -webkit-text-stroke: 1px #000;
-      text-shadow:
-        0 0 8px rgba(255, 160, 160, 0.6),
-        0 1px 3px rgba(0,0,0,0.95);
     }
 
-    /* Temperature button — big */
-    .btn-temp {
-      font-size: 18.75vw;
-      line-height: 1;
-      color: #ffffff;
+    .button.btn-temp {
+      --button-font: 700 18.75vw 'FRISQUAD', serif;
       -webkit-text-stroke: 2px #000;
-      text-shadow:
-        0 0 10px rgba(255, 160, 160, 0.5),
-        0 2px 4px rgba(0,0,0,0.95);
+      line-height: 1;
+      padding: 0.5vw calc(var(--button-padding) - var(--button-border-width));
     }
 
     .unit {
@@ -114,14 +116,12 @@
     <img id="background" src="./public/background.png" alt="WoW Midnight" />
     <div class="data">
 
-      <!-- GPU label button -->
-      <div class="wow-btn">
-        <span class="btn-label" id="source">GPU</span>
+      <div class="button">
+        <span id="source">GPU</span>
       </div>
 
-      <!-- Temperature button -->
-      <div class="wow-btn">
-        <span class="btn-temp"><span id="temperature">--</span><span class="unit">°C</span></span>
+      <div class="button btn-temp">
+        <span id="temperature">--</span><span class="unit">°C</span>
       </div>
 
     </div>
